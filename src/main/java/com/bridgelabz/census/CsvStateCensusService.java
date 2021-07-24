@@ -20,17 +20,18 @@ public class CsvStateCensusService
     public int checkNumberOfRecords() throws CSVUserException {
         try {
                 Reader reader = Files.newBufferedReader(Paths.get(STATE_CODE_CSV_FILE_PATH));
-            CsvToBean<StateCensusAnalyser> csvToBean = new CsvToBeanBuilder(reader)
+            CsvToBean<StateCodeCsvUSer> csvToBean = new CsvToBeanBuilder(reader)
                     .withType(StateCensusAnalyser.class)
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();
-            Iterator<StateCensusAnalyser> stateCodeCSVUserIterator = csvToBean.iterator();
+            Iterator<StateCodeCsvUSer> stateCodeCSVUserIterator = csvToBean.iterator();
             while (stateCodeCSVUserIterator.hasNext()) {
-                StateCensusAnalyser stateCodeCSVUser = stateCodeCSVUserIterator.next();
-                System.out.println("State : " + stateCodeCSVUser.getStateName());
-                System.out.println("Population : " + stateCodeCSVUser.getPopulation());
-                System.out.println("Area : " + stateCodeCSVUser.getAreaInSqKm());
-                System.out.println("Density: " + stateCodeCSVUser.getDensityPerSqKm());
+                StateCodeCsvUSer stateCodeCSV = stateCodeCSVUserIterator.next();
+                System.out.println("SrNo : " + stateCodeCSV.getSrNo());
+                System.out.println("State : " + stateCodeCSV.getStateName());
+                System.out.println("Name : " + stateCodeCSV.getTIN());
+                System.out.println("TIN : " + stateCodeCSV.getStateCode());
+                System.out.println("==========================");
                 System.out.println("==========================");
                 count += 1;
             }
@@ -48,7 +49,7 @@ public class CsvStateCensusService
     }
 
     public static void main(String[] args) throws CSVUserException {
-        CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/StateCensusData.csv");
+        CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/StateCode.csv");
         csvStateCensusService.checkNumberOfRecords();
     }
 }

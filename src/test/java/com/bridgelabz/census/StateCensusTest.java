@@ -6,14 +6,14 @@ import java.io.IOException;
 public class StateCensusTest {
     @Test
     public void givenNumberOfRecords_ChecksWhetherMatchesOrNot_() throws CSVUserException {
-        CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/StateCensusData.csv");
+        CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/StateCode.csv");
         int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
         Assertions.assertEquals(37, checkNumberOfRecords);
     }
     @Test
     public void givenWrongFileName_ShouldThrowFileNotFoundException() {
         try {
-            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/StateCensusData.csv");
+            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/StateCode11.csv");
             int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
         } catch (CSVUserException e) {
             Assertions.assertEquals("Such type file doesn't exist", e.getMessage());
