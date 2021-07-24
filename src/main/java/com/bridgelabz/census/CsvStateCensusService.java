@@ -17,13 +17,15 @@ public class CsvStateCensusService
         this.STATE_CODE_CSV_FILE_PATH = STATE_CODE_CSV_FILE_PATH;
     }
     int count = 0;
+    /**
+     * checking number of records.
+     * @return
+     * @throws CSVUserException
+     */
     public int checkNumberOfRecords() throws CSVUserException {
         try {
                 Reader reader = Files.newBufferedReader(Paths.get(STATE_CODE_CSV_FILE_PATH));
-            CsvToBean<StateCodeCsvUSer> csvToBean = new CsvToBeanBuilder(reader)
-                    .withType(StateCensusAnalyser.class)
-                    .withIgnoreLeadingWhiteSpace(true)
-                    .build();
+            CsvToBean<StateCodeCsvUSer> csvToBean = new CsvToBeanBuilder(reader).withType(StateCensusAnalyser.class).withIgnoreLeadingWhiteSpace(true).build();
             Iterator<StateCodeCsvUSer> stateCodeCSVUserIterator = csvToBean.iterator();
             while (stateCodeCSVUserIterator.hasNext()) {
                 StateCodeCsvUSer stateCodeCSV = stateCodeCSVUserIterator.next();
@@ -31,8 +33,6 @@ public class CsvStateCensusService
                 System.out.println("State : " + stateCodeCSV.getStateName());
                 System.out.println("Name : " + stateCodeCSV.getTIN());
                 System.out.println("TIN : " + stateCodeCSV.getStateCode());
-                System.out.println("==========================");
-                System.out.println("==========================");
                 count += 1;
             }
         }
