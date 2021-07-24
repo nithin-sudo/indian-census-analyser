@@ -1,20 +1,19 @@
 package com.bridgelabz.census;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 
 public class StateCensusTest {
     @Test
     public void givenNumberOfRecords_ChecksWhetherMatchesOrNot_() throws CSVUserException {
-        CsvStateCensusService csvStateCensusService = new CsvStateCensusService("/IdeaProjects/Indian-Census-Analyser/src/main/resources/StateCensusData.csv");
+        CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/StateCensusData.csv");
         int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
         Assertions.assertEquals(37, checkNumberOfRecords);
     }
     @Test
     public void givenWrongFileName_ShouldThrowFileNotFoundException() {
         try {
-            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("/IdeaProjects/Indian-Census-Analyser/src/main/resources/StateCensusData.csv");
+            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/StateCensusData.csv");
             int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
         } catch (CSVUserException e) {
             Assertions.assertEquals("Such type file doesn't exist", e.getMessage());
@@ -23,7 +22,7 @@ public class StateCensusTest {
     @Test
     public void givenWrongFileType_ShouldThrowFileNotFoundException() {
         try {
-            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("/IdeaProjects/Indian-Census-Analyser/src/main/resources/Basic Programs.pdf");
+            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/Basic Programs.pdf");
             int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
         } catch (CSVUserException e) {
             Assertions.assertEquals("binding of file to failed", e.getMessage());
@@ -32,7 +31,7 @@ public class StateCensusTest {
     @Test
     public void givenWrongDelimer_ShouldThrowRunTimeException() {
         try {
-            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("/IdeaProjects/Indian-Census-Analyser/src/main/resources/delimeter.csv");
+            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/delimeter.csv");
             int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
         } catch (CSVUserException e) {
             Assertions.assertEquals("delimeter problem", e.getMessage());
@@ -41,7 +40,7 @@ public class StateCensusTest {
     @Test
     public void givenWrongheaders_ShouldThrowRunTimeException() {
         try {
-            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("/IdeaProjects/Indian-Census-Analyser/src/main/resources/delimeter.csv");
+            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/delimeter.csv");
             int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
         } catch (CSVUserException e) {
             e.printStackTrace();

@@ -46,4 +46,9 @@ public class CsvStateCensusService
         }
         return count;
     }
+
+    public static void main(String[] args) throws CSVUserException {
+        CsvStateCensusService csvStateCensusService = new CsvStateCensusService("src/StateCensusData.csv");
+        csvStateCensusService.checkNumberOfRecords();
+    }
 }
