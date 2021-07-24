@@ -38,4 +38,14 @@ public class StateCensusTest {
             Assertions.assertEquals("delimeter problem", e.getMessage());
         }
     }
+    @Test
+    public void givenWrongheaders_ShouldThrowRunTimeException() {
+        try {
+            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("/IdeaProjects/Indian-Census-Analyser/src/main/resources/delimeter.csv");
+            int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
+        } catch (CSVUserException e) {
+            e.printStackTrace();
+            Assertions.assertEquals("delimeter problem or file type problem or header not found or binding data issue", e.getMessage());
+        }
+    }
 }
