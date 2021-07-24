@@ -36,8 +36,4 @@ public class CsvStateCensusService
         }
         return count;
     }
-    public static void main(String[] args) {
-        CsvStateCensusService csvStateCensusService = new CsvStateCensusService();
-        csvStateCensusService.checkNumberOfRecords();
-    }
 }
