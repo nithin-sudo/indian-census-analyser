@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 public class CsvStateCensusService
 {
-    private static final String STATE_CODE_CSV_FILE_PATH = "/IdeaProjects/Indian-Census-Analyser/src/main/resources/StateCensusData.csv";
+    private static final String STATE_CODE_CSV_FILE_PATH = "~/IdeaProjects/Indian-Census-Analyser/src/main/resources/StateCensusData.csv";
     int count = 0;
     public int checkNumberOfRecords() {
         try (
@@ -35,5 +35,9 @@ public class CsvStateCensusService
             e.printStackTrace();
         }
         return count;
+    }
+    public static void main(String[] args) {
+        CsvStateCensusService csvStateCensusService = new CsvStateCensusService();
+        csvStateCensusService.checkNumberOfRecords();
     }
 }
