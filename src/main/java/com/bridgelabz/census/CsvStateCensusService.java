@@ -39,6 +39,9 @@ public class CsvStateCensusService
         catch (NoSuchFileException e) {
             throw new CSVUserException(CSVUserException.ExceptionType.FILE_NOT_FOUND, "Such type file doesn't exist", e.getCause());
         }
+        catch (RuntimeException e){
+            throw new CSVUserException(CSVUserException.ExceptionType.BINDING_PROBLEM_AT_RUNTIME,"binding of file to failed",e.getCause());
+        }
         catch (IOException e) {
             e.printStackTrace();
         }

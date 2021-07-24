@@ -18,4 +18,13 @@ public class StateCensusTest {
             Assertions.assertEquals("Such type file doesn't exist", e.getMessage());
         }
     }
+    @Test
+    public void givenWrongFileType_ShouldThrowFileNotFoundException() {
+        try {
+            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("/IdeaProjects/Indian-Census-Analyser/src/main/resources/Basic Programs.pdf");
+            int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
+        } catch (CSVUserException e) {
+            Assertions.assertEquals("binding of file to failed", e.getMessage());
+        }
+    }
 }
