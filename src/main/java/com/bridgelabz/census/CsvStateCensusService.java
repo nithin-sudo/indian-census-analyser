@@ -35,6 +35,8 @@ public class CsvStateCensusService
                 System.out.println("==========================");
                 count += 1;
             }
+        } catch (NullPointerException e) {
+            throw new CSVUserException(CSVUserException.ExceptionType.NULL_DATA_FOUND, "delimeter problem or file type problem", e.getCause());
         }
         catch (NoSuchFileException e) {
             throw new CSVUserException(CSVUserException.ExceptionType.FILE_NOT_FOUND, "Such type file doesn't exist", e.getCause());

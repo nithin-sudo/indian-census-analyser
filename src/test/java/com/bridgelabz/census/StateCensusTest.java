@@ -2,6 +2,8 @@ package com.bridgelabz.census;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 public class StateCensusTest {
     @Test
     public void givenNumberOfRecords_ChecksWhetherMatchesOrNot_() throws CSVUserException {
@@ -25,6 +27,15 @@ public class StateCensusTest {
             int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
         } catch (CSVUserException e) {
             Assertions.assertEquals("binding of file to failed", e.getMessage());
+        }
+    }
+    @Test
+    public void givenWrongDelimer_ShouldThrowRunTimeException() {
+        try {
+            CsvStateCensusService csvStateCensusService = new CsvStateCensusService("/IdeaProjects/Indian-Census-Analyser/src/main/resources/delimeter.csv");
+            int checkNumberOfRecords = csvStateCensusService.checkNumberOfRecords();
+        } catch (CSVUserException e) {
+            Assertions.assertEquals("delimeter problem", e.getMessage());
         }
     }
 }
